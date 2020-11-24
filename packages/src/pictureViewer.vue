@@ -1,5 +1,5 @@
 <template>
-  <div class="pictureViewer">
+  <div class="pictureViewer" v-show="show">
     <div class="mask"></div>
     <div class="container">
       <div ref="post" class="imagePost">
@@ -7,8 +7,16 @@
         <!-- <img ref="img" :src="currentImgUrl" /> -->
       </div>
     </div>
-    <button class="side left" @click="before">左边</button>
-    <button class="side right" @click="next">右边</button>
+    <slot name="before">
+      <button class="side left" @click="before">上一张</button>
+    </slot>
+    <slot name="next">
+      <button class="side right" @click="next">下一张</button>
+    </slot>
+    <slot name="close">
+      <button class="close" @click="close">X</button>
+    </slot>
+
     <!-- <div class="side left" @click="before">
       <div class="vertical-center"></div>
       
@@ -18,8 +26,8 @@
       
     </div> -->
     <div class="bottom">
-      <button @click="magnify">放大</button>
-      <button @click="deflate">缩小</button>
+      <button @click="magnify">+</button>
+      <button @click="deflate">-</button>
       <button @click="handLeft">向左旋转</button>
       <button @click="handRight">向右旋转</button>
     </div>
@@ -39,6 +47,10 @@
         type: Number,
         default: 0,
       },
+      visible: {
+        type: Boolean,
+        default: false,
+      },
     },
     data() {
       return {
@@ -48,18 +60,16 @@
         imgNode: null,
       };
     },
-    // computed: {
-    //   currentIndex: {
-    //     get() {
-    //       return this.current;
-    //     },
-    //     set(val) {
-    //       console.log("val:",val);
-    //       console.log("this.currentIndex:",this.currentIndex);
-    //       this.$emit("update:current", val);
-    //     },
-    //   },
-    // },
+    computed: {
+      show: {
+        get() {
+          return this.visible;
+        },
+        set(val) {
+          this.$emit("update:visible", val);
+        },
+      },
+    },
     mounted() {
       this.setImageUrl();
       this.bindEvent();
@@ -114,6 +124,10 @@
           this.currentIndex = this.images.length - 1;
         }
         this.setImageUrl();
+      },
+      close() {
+        this.show = false;
+        console.log("close", this.show);
       },
       setImageUrl() {
         this.$emit("update:current", this.currentIndex);
@@ -273,9 +287,10 @@
     position: fixed;
     z-index: 10002;
     bottom: 0;
-    height:35px;
-    top:0;
+    height: 35px;
+    top: 0;
     margin: auto 0;
+    cursor: pointer;
   }
   .side.left {
     left: 50px;
@@ -293,6 +308,7 @@
   }
   button {
     vertical-align: middle;
+    cursor: pointer;
   }
   .vertical-center {
     display: inline-block;
@@ -311,5 +327,13 @@
     top: 0;
     bottom: 0;
     margin: auto auto; */
+  }
+  .close {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #fff;
+    z-index: 10001;
+    cursor: pointer;
   }
 </style>

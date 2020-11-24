@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <h1>pictureViewer</h1>
-    <pictureViewer :images="images" :current.sync="current"></pictureViewer>
+    <h1>pictureViewer</h1><button @click="show=true">查看图片</button>
+    <pictureViewer :images="images" :current.sync="current" :visible.sync="show"></pictureViewer>
   </div>
 </template>
 
@@ -23,6 +23,7 @@
           "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605956277921&di=83d17784badeeed73f6e598ca0fbde2d&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2Fc%2F55fbd60aa3581.jpg",
         ],
         current:0,
+        show:true,
       };
     },
   };
