@@ -8,7 +8,14 @@ module.exports = {
     "eslint:recommended",
     "@vue/prettier",
   ],
+  "globals": {
+    Image:true,
+    document:true,
+    CSSStyleDeclaration:true
+  },
+  parser: "vue-eslint-parser",
   parserOptions: {
+    parser: "babel-eslint",
     ecmaVersion: 2020,
   },
   rules: {
@@ -16,6 +23,7 @@ module.exports = {
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
     "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    
   },
   overrides: [
     {

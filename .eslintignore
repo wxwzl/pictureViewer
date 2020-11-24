@@ -5,3 +5,7 @@
 **/plugins/
 webpackSetting-output.js
 vue.config.js
+**/public
+**/package.json
+**/package-lock.json
+**/README.md

@@ -22,7 +22,7 @@
           "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605956277925&di=c62fdbb60ff1f21aacbd18a15f984423&imgtype=0&src=http%3A%2F%2Fpic23.nipic.com%2F20120823%2F10789347_180954146100_2.jpg",
           "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605956277921&di=83d17784badeeed73f6e598ca0fbde2d&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2Fc%2F55fbd60aa3581.jpg",
         ],
-        current: 0,
+        current:0,
       };
     },
   };

@@ -2,18 +2,18 @@
   <div class="pictureViewer">
     <div class="mask"></div>
     <div class="container">
-      <div class="side left" @click="before">
-        <div class="vertical-center"></div>
-        <slot name="left-bar"><button>左边</button></slot>
-      </div>
-      <div class="side right" @click="next">
-        <div class="vertical-center"></div>
-        <slot name="right-bar"><button>右边</button></slot>
-      </div>
       <div ref="post" class="imagePost">
         <div class="vertical-center"></div>
         <!-- <img ref="img" :src="currentImgUrl" /> -->
       </div>
+    </div>
+    <div class="side left" @click="before">
+      <div class="vertical-center"></div>
+      <slot name="left-bar"><button>左边</button></slot>
+    </div>
+    <div class="side right" @click="next">
+      <div class="vertical-center"></div>
+      <slot name="right-bar"><button>右边</button></slot>
     </div>
     <div class="bottom">
       <button @click="magnify">放大</button>
@@ -60,8 +60,37 @@
     // },
     mounted() {
       this.setImageUrl();
+      this.bindEvent();
     },
     methods: {
+      bindEvent() {
+        let postNode = this.$refs.post;
+        postNode.addEventListener(
+          "dragover",
+          (e) => {
+            e.preventDefault();
+          },
+          false
+        );
+        postNode.addEventListener(
+          "drop",
+          (e) => {
+            let data = e.dataTransfer.getData("Text");
+            try {
+              data = JSON.parse(data);
+            } catch (e) {
+              console.log(e);
+            }
+            this.setStyle(this.imgNode, {
+              top: e.offsetY -data.offsetY+ "px",
+              left: e.offsetX -data.offsetX+ "px",
+              "margin-top": 0,
+              "margin-left": 0,
+            });
+          },
+          false
+        );
+      },
       before() {
         if (this.currentIndex <= 0) {
           return;
@@ -89,6 +118,12 @@
         let image = new Image();
         image.src = this.images[this.currentIndex];
         image.onload = this.imgLoaded.bind(this);
+        image.ondragstart = function (e) {
+          // e.preventDefault();
+          let offsetX = e.offsetX;
+          let offsetY = e.offsetY;
+          e.dataTransfer.setData("Text", JSON.stringify({ offsetX: offsetX, offsetY: offsetY }));
+        };
       },
       imgLoaded(e) {
         if (this.imgNode) {
@@ -112,9 +147,18 @@
             width = (imgWidth / heightRadio) * radio;
           }
         }
-        this.setStyle(imgNode, "width", width + "px");
-        this.setStyle(imgNode, "height", height + "px");
-        this.setStyle(imgNode, "vertical-align", "middle");
+        this.setStyle(imgNode, {
+          width: width + "px",
+          height: height + "px",
+          "vertical-align": "middle",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          margin: "auto auto",
+        });
+        imgNode.draggable = true;
         this.$refs.post.append(imgNode);
       },
       getStyle(element, styleName) {
@@ -136,7 +180,7 @@
       setStyle(element, styleName, value) {
         if (!element || !styleName) return;
 
-        if (styleName instanceof CSSStyleDeclaration) {
+        if (styleName instanceof CSSStyleDeclaration || this.isObject(styleName)) {
           Object.keys(styleName).forEach((prop) => {
             this.setStyle(element, prop, styleName[prop]);
           });
@@ -183,6 +227,12 @@
       setRotateStyle() {
         this.setStyle(this.imgNode, "transform", "rotate(" + this.rotateIndex * 90 + "deg)");
       },
+      isObject(obj) {
+        return Object.prototype.toString.call(obj) == "[object Object]";
+      },
+      getTarget(e) {
+        return e.target;
+      },
     },
   };
 </script>
@@ -218,16 +268,17 @@
     padding-bottom: 50px;
   }
   .side {
-    background-color: #fff;
+    position: fixed;
     height: 100%;
     width: 200px;
     line-height: 100%;
+    z-index: 10002;
   }
   .side.left {
-    float: left;
+    left: 0;
   }
   .side.right {
-    float: right;
+    right: 0;
   }
   .bottom {
     position: fixed;
@@ -235,7 +286,6 @@
     right: 0;
     height: 50px;
     bottom: 0;
-    background-color: #ddd;
     z-index: 10001;
   }
   button {
@@ -249,14 +299,14 @@
   .imagePost {
     overflow: hidden;
     height: 100%;
-    position:relative;
+    position: relative;
   }
   .imagePost img {
     position: absolute;
-    left: 0;
+    /* left: 0;
     right: 0;
-    top:0;
+    top: 0;
     bottom: 0;
-    margin: auto auto;
+    margin: auto auto; */
   }
 </style>
