@@ -2,6 +2,10 @@
 ## 争对pc端的图片浏览插件
  ### 功能：上一张，下一张，放大，缩小，旋转，拖动
 
+### 安装
+```
+npm i -S @wxwzl/vue-picture-viewer-pc
+```
  ### 使用
  ```
  <template>
@@ -12,7 +16,7 @@
 </template>
 
 <script>
-  import pictureViewer from "../../packages/src/pictureViewer";
+  import vuePictureViewer from "@wxwzl/vue-picture-viewer-pc";
   export default {
     name: "App",
     components: {
