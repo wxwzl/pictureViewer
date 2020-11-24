@@ -1,5 +1,5 @@
 {
-  "name": "@wxwzl/vue-pictureviewer",
+  "name": "@wxwzl/vue-pictureviewer-pc",
   "version": "0.0.1",
   "description": " a web online picture viewer",
   "main": "index.js",
