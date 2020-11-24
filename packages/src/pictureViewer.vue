@@ -7,14 +7,16 @@
         <!-- <img ref="img" :src="currentImgUrl" /> -->
       </div>
     </div>
-    <div class="side left" @click="before">
+    <button class="side left" @click="before">左边</button>
+    <button class="side right" @click="next">右边</button>
+    <!-- <div class="side left" @click="before">
       <div class="vertical-center"></div>
-      <slot name="left-bar"><button>左边</button></slot>
-    </div>
-    <div class="side right" @click="next">
+      
+    </div> -->
+    <!-- <div class="side right" @click="next">
       <div class="vertical-center"></div>
-      <slot name="right-bar"><button>右边</button></slot>
-    </div>
+      
+    </div> -->
     <div class="bottom">
       <button @click="magnify">放大</button>
       <button @click="deflate">缩小</button>
@@ -82,8 +84,8 @@
               console.log(e);
             }
             this.setStyle(this.imgNode, {
-              top: e.offsetY -data.offsetY+ "px",
-              left: e.offsetX -data.offsetX+ "px",
+              top: e.offsetY - data.offsetY + "px",
+              left: e.offsetX - data.offsetX + "px",
               "margin-top": 0,
               "margin-left": 0,
             });
@@ -269,16 +271,17 @@
   }
   .side {
     position: fixed;
-    height: 100%;
-    width: 200px;
-    line-height: 100%;
     z-index: 10002;
+    bottom: 0;
+    height:35px;
+    top:0;
+    margin: auto 0;
   }
   .side.left {
-    left: 0;
+    left: 50px;
   }
   .side.right {
-    right: 0;
+    right: 50px;
   }
   .bottom {
     position: fixed;
