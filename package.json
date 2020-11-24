@@ -1,5 +1,5 @@
 {
-  "name": "pictureviewer",
+  "name": "@wxwzl/vue-pictureviewer",
   "version": "0.0.1",
   "description": " a web online picture viewer",
   "main": "index.js",
@@ -18,7 +18,6 @@
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@vue/eslint-config-prettier": "^6.0.0",
-    "@vue/eslint-config-typescript": "^7.0.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.1.0",
