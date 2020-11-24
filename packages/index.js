@@ -1,6 +1,6 @@
 import pictureViewer from "./src/pictureViewer";
 
 pictureViewer.install=function(Vue){
-    Vue.component(pictureViewer.name,pictureViewer);
+    Vue.component("pictureViewer",pictureViewer);
 }
 export default pictureViewer;

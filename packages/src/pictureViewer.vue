@@ -26,10 +26,12 @@
       
     </div> -->
     <div class="bottom">
-      <button @click="magnify">+</button>
-      <button @click="deflate">-</button>
-      <button @click="handLeft">向左旋转</button>
-      <button @click="handRight">向右旋转</button>
+      <slot name="bottom">
+        <button @click="magnify">+</button>
+        <button @click="deflate">-</button>
+        <button @click="handLeft">向左旋转</button>
+        <button @click="handRight">向右旋转</button>
+      </slot>
     </div>
   </div>
 </template>
@@ -51,6 +53,18 @@
         type: Boolean,
         default: false,
       },
+    },
+    watch: {
+      images: {
+        handler() {
+           this.setImageUrl();
+        },
+        immediate: true,
+        deep: true,
+      },
+      current(){
+        this.setImageUrl();
+      }
     },
     data() {
       return {
@@ -127,9 +141,11 @@
       },
       close() {
         this.show = false;
-        console.log("close", this.show);
       },
       setImageUrl() {
+        if(!this.images[this.currentIndex]){
+          return ;
+        }
         this.$emit("update:current", this.currentIndex);
         let image = new Image();
         image.src = this.images[this.currentIndex];
@@ -271,7 +287,7 @@
     left: 0;
     right: 0;
     background-color: #000;
-    opacity: 0.5;
+    opacity: 0.75;
     z-index: inherit;
   }
   .container {
@@ -305,6 +321,7 @@
     height: 50px;
     bottom: 0;
     z-index: 10001;
+    text-align: center;
   }
   button {
     vertical-align: middle;
