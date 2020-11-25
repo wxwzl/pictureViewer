@@ -1,21 +1,23 @@
-const path = require('path')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const path = require("path");
+const VueLoaderPlugin = require("vue-loader/lib/plugin");
 
+const {CleanWebpackPlugin} = require("clean-webpack-plugin");
+const outputPath = path.resolve(__dirname, "./dist/");
 module.exports = {
-  devtool: 'cheap-module-source-map',
-  entry: './packages/index.js',
+  devtool: "cheap-module-source-map",
+  entry: "./packages/index.js",
   output: {
-    path: path.resolve(__dirname, './dist/'),
-    filename: 'index.js',
-    library: 'vue-picture-viewer-pc',
-    libraryTarget: 'umd',
-    umdNamedDefine: true
+    path: outputPath,
+    filename: "index.js",
+    library: "vue-picture-viewer-pc",
+    libraryTarget: "umd",
+    umdNamedDefine: true,
   },
   resolve: {
-    extensions: ['.js', '.vue'],
+    extensions: [".js", ".vue"],
     alias: {
-      'vue$': 'vue/dist/vue.common.js'
-    }
+      vue$: "vue/dist/vue.common.js",
+    },
   },
   module: {
     rules: [
@@ -23,29 +25,27 @@ module.exports = {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['babel-preset-es2015'],
-            plugins: ['transform-runtime']
-          }
-        }
+            presets: ["babel-preset-es2015"],
+            plugins: ["transform-runtime"],
+          },
+        },
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: "vue-loader",
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      }
-    ]
+        use: ["style-loader", "css-loader"],
+      },
+    ],
   },
   mode: "production",
   plugins: [
+    new CleanWebpackPlugin(),
     // 请确保引入这个插件！
-    new VueLoaderPlugin()
-  ]
-}
+    new VueLoaderPlugin(),
+  ],
+};
