@@ -62,6 +62,7 @@
         deep: true,
       },
       current(){
+        this.currentIndex=this.current;
         this.setImageUrl();
       }
     },
