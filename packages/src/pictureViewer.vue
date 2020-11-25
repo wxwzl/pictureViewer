@@ -52,6 +52,10 @@
         type: Boolean,
         default: false,
       },
+      appendToBody:{
+        type: Boolean,
+        default: false,
+      }
     },
     watch: {
       images: {
@@ -85,6 +89,10 @@
       },
     },
     mounted() {
+      if(this.appendToBody){
+          this.$el.remove();
+          document.body.append(this.$el);
+      }
       this.setImageUrl();
       this.bindEvent();
     },

@@ -2,7 +2,7 @@
   <div id="app">
     <h1>pictureViewer</h1>
     <button @click="show = true">查看图片</button>
-    <pictureViewer :images="images" :current.sync="current" :visible.sync="show"></pictureViewer>
+    <pictureViewer :images="images" :current.sync="current" :visible.sync="show" :appendToBody="true"></pictureViewer>
   </div>
 </template>
 

@@ -4,6 +4,7 @@
     :visible.sync="show"
     :images="images"
     :current.sync="currentImage"
+    :appendToBody="true"
   >
     <template v-slot:close>
       <button class="imagePost-close" @click="closePictureView">
