@@ -16,7 +16,7 @@ npm i -S @wxwzl/vue-picture-viewer-pc
 </template>
 
 <script>
-  import vuePictureViewer from "@wxwzl/vue-picture-viewer-pc";
+  import pictureViewer from "@wxwzl/vue-picture-viewer-pc";
   export default {
     name: "App",
     components: {
@@ -38,4 +38,10 @@ npm i -S @wxwzl/vue-picture-viewer-pc
     },
   };
 </script>
+ ```
+
+ ### 样式定制
+
+ ```
+ 参考example工程里的src/pictureViewer.vue
  ```
