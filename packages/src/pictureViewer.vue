@@ -3,7 +3,6 @@
     <div class="mask"></div>
     <div class="container">
       <div ref="post" class="imagePost">
-        <div class="vertical-center"></div>
         <!-- <img ref="img" :src="currentImgUrl" /> -->
       </div>
     </div>
@@ -296,6 +295,7 @@
     bottom: 0;
     left: 0;
     right: 0;
+    width:100%;
     z-index: 10001;
     padding-bottom: 50px;
   }
@@ -326,11 +326,6 @@
   button {
     vertical-align: middle;
     cursor: pointer;
-  }
-  .vertical-center {
-    display: inline-block;
-    width: 0;
-    height: 50%;
   }
   .imagePost {
     overflow: hidden;
