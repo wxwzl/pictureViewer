@@ -9,7 +9,7 @@ module.exports = {
   output: {
     path: outputPath,
     filename: "index.js",
-    library: "vue-picture-viewer-pc",
+    library: "pictureViewer",
     libraryTarget: "umd",
     umdNamedDefine: true,
   },
