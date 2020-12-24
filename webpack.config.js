@@ -1,7 +1,7 @@
 const path = require("path");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
-
-const {CleanWebpackPlugin} = require("clean-webpack-plugin");
+const autoprefixer = require("autoprefixer");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const outputPath = path.resolve(__dirname, "./dist/");
 module.exports = {
   devtool: "cheap-module-source-map",
@@ -38,7 +38,18 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: [
+          "style-loader",
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions:{
+                plugins: [autoprefixer()],
+              }
+            },
+          },
+        ],
       },
     ],
   },
