@@ -52,23 +52,23 @@
         type: Boolean,
         default: false,
       },
-      appendToBody:{
+      appendToBody: {
         type: Boolean,
         default: false,
-      }
+      },
     },
     watch: {
       images: {
         handler() {
-           this.setImageUrl();
+          this.setImageUrl();
         },
         immediate: true,
         deep: true,
       },
-      current(){
-        this.currentIndex=this.current;
+      current() {
+        this.currentIndex = this.current;
         this.setImageUrl();
-      }
+      },
     },
     data() {
       return {
@@ -89,9 +89,9 @@
       },
     },
     mounted() {
-      if(this.appendToBody){
-          this.$el.remove();
-          document.body.append(this.$el);
+      if (this.appendToBody) {
+        this.$el.remove();
+        document.body.append(this.$el);
       }
       this.setImageUrl();
       this.bindEvent();
@@ -151,8 +151,8 @@
         this.show = false;
       },
       setImageUrl() {
-        if(!this.images[this.currentIndex]){
-          return ;
+        if (!this.images[this.currentIndex]) {
+          return;
         }
         this.$emit("update:current", this.currentIndex);
         let image = new Image();
@@ -185,6 +185,9 @@
           if (heightRadio > widthRadio) {
             height = (imgHeight / heightRadio) * radio;
             width = (imgWidth / heightRadio) * radio;
+          } else {
+            height = (imgHeight / widthRadio) * radio;
+            width = (imgWidth / widthRadio) * radio;
           }
         }
         this.setStyle(imgNode, {
@@ -304,7 +307,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    width:100%;
+    width: 100%;
     z-index: 10001;
     padding-bottom: 50px;
   }
