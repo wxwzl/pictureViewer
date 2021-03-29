@@ -158,6 +158,10 @@
         let image = new Image();
         image.src = this.images[this.currentIndex];
         image.onload = this.imgLoaded.bind(this);
+        image.onclick = function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        };
         image.ondragstart = function (e) {
           // e.preventDefault();
           let offsetX = e.offsetX;
