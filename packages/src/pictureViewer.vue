@@ -90,7 +90,7 @@
     },
     mounted() {
       if (this.appendToBody) {
-        this.$el.remove();
+        this.$el.parentNode.remove(this.$el);
         document.body.append(this.$el);
       }
       this.setImageUrl();
@@ -158,7 +158,7 @@
         let image = new Image();
         image.src = this.images[this.currentIndex];
         image.onload = this.imgLoaded.bind(this);
-        image.onclick = function (e) {
+        image.ondragover = function (e) {
           e.preventDefault();
           e.stopPropagation();
         };
@@ -171,7 +171,7 @@
       },
       imgLoaded(e) {
         if (this.imgNode) {
-          this.imgNode.remove();
+          this.imgNode.parentNode.remove(this.imgNode);
         }
         let imgNode = (this.imgNode = e.target);
         let maxWidthStr = this.getStyle(this.$refs.post, "width");
