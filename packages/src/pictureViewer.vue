@@ -90,7 +90,7 @@
     },
     mounted() {
       if (this.appendToBody) {
-        this.$el.parentNode.remove(this.$el);
+        this.$el.parentNode.removeChild(this.$el);
         document.body.append(this.$el);
       }
       this.setImageUrl();
@@ -171,7 +171,7 @@
       },
       imgLoaded(e) {
         if (this.imgNode) {
-          this.imgNode.parentNode.remove(this.imgNode);
+          this.imgNode.parentNode.removeChild(this.imgNode);
         }
         let imgNode = (this.imgNode = e.target);
         let maxWidthStr = this.getStyle(this.$refs.post, "width");
@@ -189,10 +189,11 @@
           if (heightRadio > widthRadio) {
             height = (imgHeight / heightRadio) * radio;
             width = (imgWidth / heightRadio) * radio;
-          } else {
-            height = (imgHeight / widthRadio) * radio;
-            width = (imgWidth / widthRadio) * radio;
           }
+          // else {
+          //   height = (imgHeight / widthRadio) * radio;
+          //   width = (imgWidth / widthRadio) * radio;
+          // }
         }
         this.setStyle(imgNode, {
           width: width + "px",

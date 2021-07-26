@@ -29,6 +29,7 @@
 </template>
 <script>
 import vuePictureViewer from "@wxwzl/vue-picture-viewer-pc";
+// import vuePictureViewer from "../../packages/src/pictureViewer";
 export default {
   name: "pictureViewer",
   components: {
