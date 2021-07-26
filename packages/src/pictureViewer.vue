@@ -66,8 +66,10 @@
         deep: true,
       },
       current() {
-        this.currentIndex = this.current;
-        this.setImageUrl();
+        if (this.current != this.currentIndex) {
+          this.currentIndex = this.current;
+          this.setImageUrl();
+        }
       },
     },
     data() {
@@ -150,11 +152,16 @@
       close() {
         this.show = false;
       },
+      emitIndexChange() {
+        if (this.currentIndex != this.current) {
+          this.$emit("update:current", this.currentIndex);
+        }
+      },
       setImageUrl() {
         if (!this.images[this.currentIndex]) {
           return;
         }
-        this.$emit("update:current", this.currentIndex);
+        this.emitIndexChange();
         let image = new Image();
         image.src = this.images[this.currentIndex];
         image.onload = this.imgLoaded.bind(this);
