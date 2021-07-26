@@ -1,4 +1,4 @@
-## 0.0.5 (2021-03-25)
+## 0.0.5 (2021-07-26)
 
 
 ### Bug Fixes
@@ -7,6 +7,8 @@
 * 修复图片按等比例缩放 ([d1125c2](https://github.com/wxwzl/vue-pictureViewer-pc/commit/d1125c20a234b27503949097f90fb0f186ea12e8))
 * 修改样式 ([d5a6882](https://github.com/wxwzl/vue-pictureViewer-pc/commit/d5a6882194f9deda6413a8dc85951c789d47ea96))
 * 响应数据 ([f987502](https://github.com/wxwzl/vue-pictureViewer-pc/commit/f9875029ae82bb8e357c52cbab6dfaf445f77db9))
+* 拖动和删除节点api ([70324e4](https://github.com/wxwzl/vue-pictureViewer-pc/commit/70324e49abd8c14f7fd25457393d470b5870e482))
+* 阻止默认事件 ([fe007c7](https://github.com/wxwzl/vue-pictureViewer-pc/commit/fe007c7090d8bff079b977472c7a0e43b6822190))
 
 
 ### Features
