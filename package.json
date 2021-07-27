@@ -7,7 +7,8 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "lint": "eslint  test/**/* packages/**/*  --quiet",
     "build": "webpack --config webpack.config.js",
-    "test": "cd ./test && npm i && npm run dev"
+    "test": "cd ./test && npm i && npm run dev",
+    "prepublish":"npm run build"
   },
   "keywords": [
     "picture",
