@@ -23,7 +23,7 @@
       return {
         images: [
           completeUrl("/static/images/1.jpg"),
-          completeUrl("/static/images/2.jpg"),
+          completeUrl("/static/images/02.jpg"),
           completeUrl("/static/images/3.jpg"),
           completeUrl("/static/images/4.jpg"),
           // "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1015940306,479093215&fm=26&gp=0.jpg",

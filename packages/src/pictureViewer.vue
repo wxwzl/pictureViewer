@@ -260,6 +260,7 @@ export default {
     },
     handleImgError(e) {
       e.target.alt = "加载失败";
+      this.handleImgLoaded(e);
     },
     handleImgLoaded(e) {
       if (this.imgNode && this.imgNode.parentNode) {
