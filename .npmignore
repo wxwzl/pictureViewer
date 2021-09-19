@@ -1,0 +1,16 @@
+rollup.config.js
+webpack.config.js
+tsconfig.json
+typedoc.json
+**/*.tgz
+test
+node_modules
+.editorconfig
+.eslintignore
+.eslintrc.js
+.lintstagedrc.js
+.prettierignore
+.prettierrc
+.stylelintrc
+commitlint.config.js
+example
