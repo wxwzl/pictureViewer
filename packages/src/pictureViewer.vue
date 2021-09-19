@@ -1,7 +1,7 @@
 <template>
   <div class="pictureViewer" v-show="show" :style="{ 'z-index': zIndex }">
     <div class="pictureViewer-mask"></div>
-    <div class="pictureViewer-container" ref="post">
+    <div class="pictureViewer-container" ref="post" @click="handleMaskClick">
       <div class="pictureViewer-verticlehelp"></div>
     </div>
     <template v-if="$slots.actions">
@@ -71,6 +71,10 @@ export default {
     preload: {
       type: Boolean,
       default: true,
+    },
+    closeOnClickModal: {
+      type: Boolean,
+      default: false,
     },
   },
   watch: {
@@ -237,19 +241,20 @@ export default {
       image.onerror = this.handleImgError.bind(this);
     },
     preLoadImages() {
-      let len = this.images.length;
-      let temp = 0;
-      function loadImg() {
-        let image = new Image();
-        image.src = this.images[temp];
-        image.onload = function () {
-          if (temp < len) {
-            temp++;
-            loadImg();
-          }
-        };
-      }
       if (this.preload) {
+        let images = this.images;
+        let len = images.length;
+        let temp = 0;
+        function loadImg() {
+          let image = new Image();
+          image.src = images[temp];
+          image.onload = function () {
+            if (temp < len) {
+              temp++;
+              loadImg();
+            }
+          };
+        }
         loadImg();
       }
     },
@@ -303,6 +308,13 @@ export default {
     },
     resetTransform() {
       this.transform = JSON.parse(JSON.stringify(defaultTransform));
+    },
+    handleMaskClick(e) {
+      if (e.target.tagName.toLowerCase() != "img") {
+        if (this.closeOnClickModal) {
+          this.close();
+        }
+      }
     },
   },
   destroyed() {
