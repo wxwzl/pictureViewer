@@ -8,7 +8,8 @@
     "lint": "eslint  test/**/* packages/**/*  --quiet",
     "build": "webpack --config webpack.config.js",
     "test": "cd ./test && npm i && npm run dev",
-    "prepublish":"npm run build"
+    "prepublish":"npm run build",
+    "example":"cd ./example && npm i && npm run dev"
   },
   "keywords": [
     "picture",
