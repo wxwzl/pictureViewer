@@ -28,8 +28,9 @@
     </template>
   </vuePictureViewer>
 </template>
-<script>
-import vuePictureViewer from "@wxwzl/vue-picture-viewer-pc";
+<script lang="js">
+// import vuePictureViewer from "@wxwzl/vue-picture-viewer-pc";
+import vuePictureViewer from "../../dist/index";
 export default {
   name: "pictureViewer",
   components: {
@@ -107,6 +108,7 @@ export default {
 .imagePost-close {
   width: 150px;
   border-radius: 150px;
+  border-width: 0;
   position: absolute;
   top: -75px;
   right: -75px;

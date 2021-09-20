@@ -1,4 +1,4 @@
-import Vue, { VueConstructor } from 'vue';
+import Vue, { PluginObject, VueConstructor, PluginFunction } from 'vue';
 
 interface PictureViewer extends VueConstructor<Vue> {
   images: Array<string>;
@@ -12,14 +12,17 @@ interface PictureViewer extends VueConstructor<Vue> {
   closeOnClickModal: boolean;
   before(): void;
   next(): void;
-  close():void;
-  magnify():void;
-  deflate():void;
-  handLeft():void;
-  handRight():void;
-  resetStyle():void;
-  install(vue: Vue):void;
+  close(): void;
+  magnify(): void;
+  deflate(): void;
+  handLeft(): void;
+  handRight(): void;
+  resetStyle(): void;
+  install(
+    plugin: PluginObject<unknown> | PluginFunction<unknown>,
+    options?: unknown
+  ): void;
 }
-declare const pictureViewer: PictureViewer;
+declare const pictureViewer: PictureViewer & PluginObject<unknown>;
 
 export { pictureViewer as default };

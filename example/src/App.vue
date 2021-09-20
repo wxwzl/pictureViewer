@@ -1,17 +1,21 @@
 <template>
   <div id="app">
     <h1>pictureViewer</h1>
-    <button @click="show = true">查看图片</button>
+    <button @click="show = true">查看样式一</button>
+    <button @click="show1 = true">查看样式二</button>
     <pictureViewer :images="images" :current.sync="current" :visible.sync="show"></pictureViewer>
+    <pictureViewerHalfScreen :images="images" :current.sync="current" :visible.sync="show1"></pictureViewerHalfScreen>
   </div>
 </template>
 
-<script>
+<script lang="js">
+ import pictureViewerHalfScreen from "./pictureViewer-halfScreen";
   import pictureViewer from "./pictureViewer";
   export default {
     name: "App",
     components: {
       pictureViewer,
+      pictureViewerHalfScreen
     },
     data() {
       function completeUrl(url) {
@@ -32,7 +36,8 @@
           // "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605956277921&di=83d17784badeeed73f6e598ca0fbde2d&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2Fc%2F55fbd60aa3581.jpg",
         ],
         current: 0,
-        show: true,
+        show: false,
+        show1: false,
       };
     },
   };

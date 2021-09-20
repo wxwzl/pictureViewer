@@ -104,6 +104,20 @@ npm i -S @wxwzl/vue-picture-viewer-pc
 >`close`:用于定制关闭按钮元素
 
 >`bottom`:用于定制顶部变换按钮的元素
+
+## 键盘快捷键支持
+
+ > `ESC`：隐藏组件功能按键。
+
+ > `SPACE`：清除当前所展示的图片的所有变换功能按键。
+
+ > `LEFT_ARROW`：上一张功能按键。
+
+ > `RIGHT_ARROW`：下一张功能按键。
+
+ > `UP_ARROW`：放大功能按键。
+
+ > `DOWN_ARROW`：缩小功能按键。
  ### 样式定制
 
  ```

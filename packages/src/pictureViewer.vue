@@ -251,7 +251,7 @@ export default {
     close() {
       this.show = false;
       this.uninstallEvent();
-      this.emit("close");
+      this.$emit("close");
     },
     emitIndexChange() {
       if (this.currentIndex != this.current) {
