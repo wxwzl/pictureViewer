@@ -121,5 +121,5 @@ npm i -S @wxwzl/vue-picture-viewer-pc
  ### 样式定制
 
  ```
- 参考example工程里的src/pictureViewer.vue
+ 参考example工程
  ```

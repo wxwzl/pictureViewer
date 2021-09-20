@@ -1,4 +1,18 @@
-## [0.0.9](https://github.com/wxwzl/vue-pictureViewer-pc/compare/0.0.8...0.0.9) (2021-09-20)
+# [1.0.0](https://github.com/wxwzl/vue-pictureViewer-pc/compare/0.0.9...1.0.0) (2021-09-20)
+
+
+### Bug Fixes
+
+* close事件发出bug ([57d1639](https://github.com/wxwzl/vue-pictureViewer-pc/commit/57d1639092241dc661d4f17017813d0f09ea02d3))
+
+
+### Features
+
+* 增加某些事件和改用rollup打包及增加typescript支持 ([c7e0dcb](https://github.com/wxwzl/vue-pictureViewer-pc/commit/c7e0dcba565febf0f2d106ddd540ccc53f9beab1))
+
+
+
+## [0.0.9](https://github.com/wxwzl/vue-pictureViewer-pc/compare/0.0.8...0.0.9) (2021-09-19)
 
 
 ### Bug Fixes
