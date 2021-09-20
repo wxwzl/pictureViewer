@@ -8,28 +8,36 @@
       <slot name="actions"></slot>
     </template>
     <template v-else>
-      <slot v-if="images.length > 1 && !isFirst" name="before">
-        <button class="pictureViewer-side left" @click="before">上一张</button>
-      </slot>
-      <slot v-if="images.length > 1 && !isLast" name="next">
-        <button class="pictureViewer-side right" @click="next">下一张</button>
-      </slot>
-      <slot name="close">
-        <button class="pictureViewer-close" @click="close">X</button>
-      </slot>
+      <slot v-if="$slots.before && images.length > 1 && !isFirst" name="before"></slot>
+      <template v-else>
+        <button
+          v-if="images.length > 1 && !isFirst"
+          class="pictureViewer-side left"
+          @click="before"
+        >
+          上一张
+        </button>
+      </template>
+      <slot v-if="$slots.next &&  images.length > 1 && !isLast" name="next"></slot>
+      <template v-else>
+         <button  v-if="images.length > 1 && !isLast" class="pictureViewer-side right" @click="next">下一张</button>  
+      </template>
+      <slot v-if="$slots.close" name="close"></slot>
+      <template v-else> <button class="pictureViewer-close" @click="close">X</button></template>
       <div class="pictureViewer-bottom">
-        <slot name="bottom">
-          <button @click="magnify">+</button>
+        <slot v-if="$slots.bottom" name="bottom"></slot>
+        <template v-else>
+           <button @click="magnify">+</button>
           <button @click="deflate">-</button>
           <button @click="resetStyle">还原</button>
           <button @click="handLeft">向左旋转</button>
           <button @click="handRight">向右旋转</button>
-        </slot>
+        </template>
       </div>
     </template>
   </div>
 </template>
-<script>
+<script lang="js">
 import { on, off, setStyle, rafThrottle, isFirefox } from "./utils";
 const mousewheelEventName = isFirefox() ? "DOMMouseScroll" : "mousewheel";
 const defaultTransform = {
@@ -44,6 +52,7 @@ export default {
   props: {
     images: {
       type: Array,
+      required: true,
       default: function () {
         return [];
       },
@@ -58,6 +67,7 @@ export default {
     },
     visible: {
       type: Boolean,
+      required: true,
       default: false,
     },
     appendToBody: {
@@ -66,7 +76,23 @@ export default {
     },
     minRotate: {
       type: Number,
+      validator:(value)=>{
+        if(value >0 && value <360){
+          return true;
+        }
+        return false;
+      },
       default: 90,
+    },
+    minAdd:{
+      type: Number,
+      validator:(value)=>{
+        if(value >0 && value <=1){
+          return true;
+        }
+        return false;
+      },
+      default: 0.1,
     },
     preload: {
       type: Boolean,
@@ -113,6 +139,7 @@ export default {
         return this.visible;
       },
       set(val) {
+        this.$emit("visible-changed",val);
         this.$emit("update:visible", val);
       },
     },
@@ -224,10 +251,12 @@ export default {
     close() {
       this.show = false;
       this.uninstallEvent();
+      this.emit("close");
     },
     emitIndexChange() {
       if (this.currentIndex != this.current) {
         this.$emit("update:current", this.currentIndex);
+        this.$emit("change",this.currentIndex);
       }
     },
     setImageUrl() {
@@ -274,13 +303,13 @@ export default {
     },
     magnify() {
       if (this.imgNode) {
-        this.transform.scale = this.transform.scale * 1.1;
+        this.transform.scale = this.transform.scale *(1+this.minAdd);
         this.setImgNodeStyle();
       }
     },
     deflate() {
       if (this.imgNode) {
-        this.transform.scale = this.transform.scale * 0.9;
+        this.transform.scale = this.transform.scale * (1-this.minAdd);
         this.setImgNodeStyle();
       }
     },

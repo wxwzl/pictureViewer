@@ -1,22 +1,21 @@
 <template>
-  <div id="app">
+ <div id="app">
     <h1>pictureViewer</h1>
     <button @click="show = true">查看图片</button>
-    <pictureViewer :images="images" :current.sync="current" :visible.sync="show" :appendToBody="true"></pictureViewer>
+    <pictureViewer :images="images" :current.sync="current" :visible.sync="show" :appendToBody="true" :zIndex="2000"></pictureViewer>
   </div>
 </template>
-
-<script>
-  import Vue from "vue";
-  import pictureViewer from "../../packages/index";
-  Vue.use(pictureViewer);
-  export default {
-    name: "App",
-    // components: {
-    //   pictureViewer,
-    // },
-    data() {
-      function completeUrl(url) {
+<script lang="ts">
+import Vue from "vue";
+import pictureViewer from "../../packages/index";
+// import pictureViewer from "../../dist/index";
+Vue.use(pictureViewer);
+export default Vue.extend({
+  components: {
+    pictureViewer,
+  },
+  data() {
+      function completeUrl(url:string) {
         console.log(window.location.origin + url);
         return window.location.origin + url;
       }
@@ -37,16 +36,27 @@
         show: true,
       };
     },
-  };
+});
 </script>
+<style lang="less">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 
-<style>
-  #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
+#nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
     color: #2c3e50;
-    margin-top: 60px;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
   }
+}
 </style>

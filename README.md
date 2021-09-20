@@ -1,6 +1,12 @@
- a vue web picture viewer
-## 争对pc端的图片浏览插件
- ### 功能：上一张，下一张，放大，缩小，旋转，拖动
+ # a vue web picture viewer
+ 争对pc端的图片浏览插件
+ ## 功能
+ - 支持上一张，下一张
+ - 支持放大，缩小，旋转，拖动,还原操作
+ - 支持键盘和鼠标滚动等操作放大、缩小、旋转、拖动和还原操作
+ - 提供了可定制样式的插槽
+ - 支持vue-typescript工程所需的类型声明
+ - rollup打包，体积小
 
 ### 安装
 ```
@@ -39,7 +45,65 @@ npm i -S @wxwzl/vue-picture-viewer-pc
   };
 </script>
  ```
+## 组件API
+ ### `props属性`
 
+ > `images`: 要浏览的图片数组,类型：`Array`,默认值:`[]`,必选。
+
+ >`zIndex`: 组件的z-index;因为组件根节点采用`fixed`定位，类型：`number`,默认值:`1000`,可选。
+
+ >`current`:当前所展示的图片在images数组中的索引，类型：`number`,默认值:`0`,可选。
+
+ >`visible`:控制组件显示或隐藏,类型：`boolean`,默认值:`false`,必选。
+
+ >`appendToBody`: 控制是否将组件的挂在到body元素上而不是挂载组件当前位置，类型：`boolean`,默认值:`false`,可选。
+
+ >`minRotate`: 控制旋转功能的每次旋转的角度，类型：`number`,默认值:`90`,可选。
+
+ >`minAdd`:控制旋放大缩小功能的每次增量，类型：`number`且在（0，1）,默认值:`0.1`,可选。 
+
+ > `preload`: 是否开启图片预加载，类型：`boolean`,默认值:`true`,可选。
+
+ >`closeOnClickModal`: 控制点击遮罩是否隐藏组件，类型：`boolean`,默认值:`false`,可选。
+
+ ### `方法`
+
+ >`before`: 上一张，参数：无。
+
+ >`next`: 下一张，参数：无。
+
+ >`close`: 隐藏组件，参数：无。
+
+ >`magnify`: 放大当前所展示的图片，参数：无。
+
+ >`deflate`: 缩小当前的所展示的图片，参数：无。
+
+ >`handLeft`: 向左旋转，参数：无。
+
+ >`handRight`: 向右旋转，参数：无。
+
+ >`resetStyle`: 清除当前所展示的图片的所有变换，参数：无。
+
+ >`install`: 全局注册组件方法：参数：Vue。
+
+### `事件`
+
+>`close`:组件被隐藏时触发,参数：无。
+
+>`change`:所展示的图片切换时即current属性变化时触发，参数：`最新的索引值`。
+
+>`visible-changed`:组件的显隐状态变化时，参数：`显隐状态`。
+### `插槽`:
+
+>`actions`: 用于定制所有按钮元素
+
+>`before`:用于定制上一张按钮元素
+
+>`next`:用于定制下一张按钮元素
+
+>`close`:用于定制关闭按钮元素
+
+>`bottom`:用于定制顶部变换按钮的元素
  ### 样式定制
 
  ```
