@@ -59,4 +59,7 @@ module.exports = {
     // 请确保引入这个插件！
     new VueLoaderPlugin(),
   ],
+  externals:{
+    "vue":"Vue"
+  }
 };
