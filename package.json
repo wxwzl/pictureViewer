@@ -1,6 +1,6 @@
 {
   "name": "@wxwzl/vue-picture-viewer-pc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": " a web online picture viewer",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -65,7 +65,7 @@
     "vue": "^2.6.14"
   },
   "peerDependencies": {
-    "vue": "^2.5.20+"
+    "vue": ">=2.5.20"
   },
   "repository": {
     "type": "git",
