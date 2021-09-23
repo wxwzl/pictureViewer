@@ -5,6 +5,7 @@
     <button @click="show1 = true">查看样式二</button>
     <pictureViewer :images="images" :current.sync="current" :visible.sync="show"></pictureViewer>
     <pictureViewerHalfScreen :images="images" :current.sync="current" :visible.sync="show1"></pictureViewerHalfScreen>
+    <div class="test">sdgdfgfd</div>
   </div>
 </template>
 
@@ -51,5 +52,8 @@
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
+  }
+  .test{
+    height: 1000px;
   }
 </style>
