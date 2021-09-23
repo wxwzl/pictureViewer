@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/wxwzl/vue-pictureViewer-pc/compare/1.0.0...1.0.2) (2021-09-23)
+
+
+### Bug Fixes
+
+* 修复放大缩小鼠标滚动时，页面也跟着滚动 ([5cea530](https://github.com/wxwzl/vue-pictureViewer-pc/commit/5cea530ccb681307dfb808fe3a4bfd2c21628d79))
+
+
+
 # [1.0.0](https://github.com/wxwzl/vue-pictureViewer-pc/compare/0.0.9...1.0.0) (2021-09-20)
 
 
